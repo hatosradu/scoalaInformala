@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dogs</title>
+        <style>
+            .column {
+                float: left;
+                height: 700px;
+            }
+
+            .columnLeft {
+                margin: 10px;
+                width: 300px;
+                border-style: solid;
+                border-left: 0px;
+                border-top: 0px;
+                border-bottom: 0px;
+                border-color: gray;
+                border-width: 1px;
+            }
+
+            .columnRight {
+                width: 450px;
+                margin: 10px;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+            ul a {
+                display: block;
+            }
+
+            .dogImage {
+                width: 250px;
+            }
+
+            .boldText {
+                font-weight: bold;
+            }
+
+            .navItem {
+                font-size: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <div class="column columnLeft">
+                <ul>
+                    <li class="navItem">Rottweiler</li>
+                    <li class="navItem" style="color: blue;">Beagle</li>
+                    <li class="navItem">Poodle</li>
+                    <li class="navItem">German shepherd</li>
+                </ul>
+            </div>
+
+            <div class="column columnRight">
+                <img class="dogImage" src="assets/beagle.jpeg" alt="Open Menu">
+                <h1>Beagle</h1>
+                
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="boldText">Weight</td>
+                            <td>10 - 11kg</td>
+                        </tr>
+                        <tr>
+                            <td class="boldText">Coat</td>
+                            <td>Short haired, hard coat of medium length</td>
+                        </tr>
+                        <tr>
+                            <td class="boldText">Color</td>
+                            <td>Many colors</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    The beagle is a breed of small hound that is similar in appearance to the much larger foxhound. The
+                    beagle is a scent
+                    hound, developed primarly for hunting hare (beagling).
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

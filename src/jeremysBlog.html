@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jeremy's Blog</title>
+    <style>
+        body {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .navButtonsHolder {
+            float: right;
+        }
+
+        .navButton{
+            background: transparent;
+            border:0px;
+        }
+
+        .infoText {
+            color: gray;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <nav>
+            <span>Jeremy's Blog</span>
+            <span class="navButtonsHolder">
+                <button class="navButton">HOME</button>
+                <button class="navButton">ABOUT</button>
+                <button class="navButton">ARCHIVE</button>
+    
+            </span>
+        </nav>
+        <hr>
+
+        <h3>Rules for Autocomplete</h3>
+        <p class="infoText">Posted on March 19, 2019</p>
+
+        <div>
+            <p>
+                Autocompleting text with known values seems like an easy problem to solve, but so so so many UIs get it
+                wrong. I see this frequently enough that,
+                rather than complain about them individually, I though I’d just write down the set of rules they often
+                break.
+            </p>
+
+            <p>
+                There may be cases where some of these rules aren’t the best thing to do, but there should be a good
+                reason for breaking one of these rules (for example, some of these rules don’t apply if a field
+                must be filled with a value from a fixed set, like the list of US states).
+                Following these rules should always result in at very least a sane experience:
+            </p>
+
+            <ul>
+                <li>Exact matches always come first. If the user types in an option exactly, other options must always go below the one matching what they typed.</li>
+                <li>Besides exact matches, prefix matches come first. If I type “Fr” I want “Fresno” not “San Francisco.”</li>
+                <li>After prefix matches, it can fall back to substring matches. Starting with substring matches would almost always 
+                    be the wrong thing to do since users start typing words at the beginning not somewhere in the middle.</li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+
+</html>
