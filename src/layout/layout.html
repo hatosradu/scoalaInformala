@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample layout</title>
+    <link rel="stylesheet" href="layout.css">
+
+    <style>
+        body {
+            margin: 0px;
+            height: 100vh;
+            background-color: darkgray;
+        }
+
+        #main {
+            display: flex;
+            flex-direction: row;
+        }
+
+        aside {
+            height: 100vh;
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            height: 100vh;
+            flex: 1;
+        }
+
+        header {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border-right: 2px solid gray;
+            border-bottom: 2px solid gray;
+        }
+
+        #logo {
+            max-width: 50px;
+            max-height: 40px;
+        }
+
+        nav {
+            border-right: 2px solid gray;
+            flex: 1;
+        }
+
+        .button {
+            padding: 15px 10px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: aqua;
+        }
+
+        .button.active {
+            background-color: forestgreen;
+            color: white;
+        }
+
+        .button>img {
+            vertical-align: middle;
+            max-width: 26px;
+            max-height: 26px;
+            margin-right: 15px;
+        }
+
+        #pageTitle {
+            flex: 1;
+            margin-left: 20px;
+            font-size: 1.6rem;
+        }
+
+        #pages > .page .active {
+            display: none;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <aside>
+            <header>
+                <img id="logo" src="../assets/logo.png" alt="logo">
+                <div>
+                    <div style="font-size: 1.3em;">Title</div>
+                    <div style="font-size: 0.7em;">Subtitle</div>
+                </div>
+            </header>
+            <nav>
+                <div class="button active">
+                    <img src="../assets/homeIcon.png" alt="">
+                    <span>Home</span>
+                </div>
+                <div class="button">
+                    <img src="../assets/earth.png" alt="">
+                    <span>Dashboard</span>
+                </div>
+                <div class="button">
+                    <img src="../assets/searchIcon.png" alt="">
+                    <span>Custumers</span>
+                </div>
+                <div class="button">
+                    <img src="../assets/menuIcon.png" alt="">
+                    <span>Employees</span>
+                </div>
+            </nav>
+        </aside>
+        <main>
+            <header>
+                <div id="pageTitle">Welcome</div>
+                <div class="button">
+                    <img src="../assets/menuIcon.png" alt="">
+                </div>
+                <div class="button">
+                    <img src="../assets/darkMode.png" alt="">
+                </div>
+                <div class="button">
+                    <img src="../assets/homeIcon.png" alt="">
+                </div>
+                <div class="button">
+                    <img src="../assets/searchIcon.png" alt="">
+                </div>
+            </header>
+            <div id="pages">
+                <div class="page active">
+                    <div style="display:flex; width: 100%; padding: 25px; box-sizing: border-box;">
+                        <div class="button">
+                            <img src="../assets/darkMode.png" alt="">
+                        </div>
+                        <div class="button">
+                            <img src="../assets/homeIcon.png" alt="">
+                        </div>
+                        <div class="button">
+                            <img src="../assets/searchIcon.png" alt="">
+                        </div>
+
+                        <div style="flex: 1;"></div>
+                        <label>
+                            <span>show archive</span>
+                            <input type="checkbox" />
+                        </label>
+                    </div>
+                    <table border="2">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" name="" id=""></th>
+                                <th><img style="max-height: 20px;" src="../assets/earth.png" alt=""></th>
+                                <th>Name</th>
+                                <th>Device SN</th>
+                                <th>Time</th>
+                                <th>Version</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" name="" id=""></td>
+                                <td><img style="max-height: 20px;" src="../assets/earth.png" alt=""></td>
+                                <td>asdasd</td>
+                                <td>asdasda</td>
+                                <td>asdasdas</td>
+                                <td>asdasdasd</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" name="" id=""></td>
+                                <td><img style="max-height: 20px;" src="../assets/earth.png" alt=""></td>
+                                <td>asdasd</td>
+                                <td>asdasda</td>
+                                <td>asdasdas</td>
+                                <td>asdasdasd</td>
+                                <td></td>
+                            </tr>  <tr>
+                                <td><input type="checkbox" name="" id=""></td>
+                                <td><img style="max-height: 20px;" src="../assets/earth.png" alt=""></td>
+                                <td>asdasd</td>
+                                <td>asdasda</td>
+                                <td>asdasdas</td>
+                                <td>asdasdasd</td>
+                                <td></td>
+                            </tr>  <tr>
+                                <td><input type="checkbox" name="" id=""></td>
+                                <td><img style="max-height: 20px;" src="../assets/earth.png" alt=""></td>
+                                <td>asdasd</td>
+                                <td>asdasda</td>
+                                <td>asdasdas</td>
+                                <td>asdasdasd</td>
+                                <td></td>
+                            </tr>  <tr>
+                                <td><input type="checkbox" name="" id=""></td>
+                                <td><img style="max-height: 20px;" src="../assets/earth.png" alt=""></td>
+                                <td>asdasd</td>
+                                <td>asdasda</td>
+                                <td>asdasdas</td>
+                                <td>asdasdasd</td>
+                                <td></td>
+                            </tr>  <tr>
+                                <td><input type="checkbox" name="" id=""></td>
+                                <td><img style="max-height: 20px;" src="../assets/earth.png" alt=""></td>
+                                <td>asdasd</td>
+                                <td>asdasda</td>
+                                <td>asdasdas</td>
+                                <td>asdasdasd</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" style="text-align: center;">
+                                    <button>
+                                        <img src="../assets/menuIcon.png" alt="">
+                                    </button>
+
+                                    <button>
+                                        <img src="../assets/menuIcon.png" alt="">
+                                    </button>
+
+                                    <button>1</button>
+                                    <button>2</button>
+
+                                    <button>
+                                        <img src="../assets/menuIcon.png" alt="">
+                                    </button>
+
+                                    <button>
+                                        <img src="../assets/menuIcon.png" alt="">
+                                    </button>
+                                </td>
+                                <td>Show</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="page">Page 2</div>
+                <div class="page">Page 3</div>
+                <div class="page">Page 4</div>
+                <div class="page">Page 5</div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
