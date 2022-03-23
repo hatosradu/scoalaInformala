@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input.error {
+            border: 2px solid red;
+            background-color: lightcoral;
+            color: white;
+        }
+    </style>
+    <script>
+        function clickMe() {
+            let input = document.querySelector("#numar");
+            let numar = Number(input.value);
+            let parImpar = par(numar);
+            let div = document.querySelector("#result");
+            div.innerHTML = `Numarul ${numar} este <b>${parImpar}`;
+
+        }
+
+        function par(numar) {
+            let rezultat;
+            if (numar % 2 === 0) {
+                rezultat = "par";
+            } else {
+                rezultat = "impar";
+            }
+            return rezultat;
+        }
+
+        function maxOfClick() {
+            let inputXElem = document.querySelector("#maxOfX");
+            let inputYElem = document.querySelector("#maxOfY");
+
+            let inputX = Number(inputXElem.value);
+            let inputY = Number(inputYElem.value);
+
+            if (isNaN(inputX)) {
+                inputXElem.classList.add("error");
+            } else {
+                inputXElem.classList.remove("error");
+            }
+
+            if (isNaN(inputY)) {
+                inputYElem.classList.add("error");
+            } else {
+                inputYElem.classList.remove("error");
+            }
+
+            let result = max(inputX, inputY);
+            let div = document.querySelector("#resultMaxOf");
+            div.innerHTML = `Numarul ${result} este mai mare.`;
+            console.log(`Numarul ${result} este mai mare.`);
+        }
+
+        function max(a, b) {
+            if (a > b) {
+                return a;
+            }
+            return b;
+        }
+
+
+        function checkHealth() {
+            let heightElem = document.querySelector("#height");
+            let weightElem = document.querySelector("#weight");
+
+            let height = Number(heightElem.value);
+            let weight = Number(weightElem.value);
+
+            if (isNaN(height) || height < 1 || height > 2.2) {
+                heightElem.classList.add("error");
+            } else {
+                heightElem.classList.remove("error");
+            }
+
+            if (isNaN(weight) || weight < 30 || weight > 250) {
+                weightElem.classList.add("error");
+            } else {
+                weightElem.classList.remove("error");
+            }
+
+
+            let result = indiceleDeGreutate(height, weight);
+            let div = document.querySelector("#resultCheckHealth");
+            div.innerHTML = result;
+        }
+
+        function indiceleDeGreutate(height, weight) {
+            let indice = weight / (height * height);
+            let status = null;
+            if (indice < 20) {
+                status = "subponderal";
+            } else if (indice < 25) {
+                status = "normal";
+            } else if (indice < 30) {
+                status = "supraponderal";
+            } else if (indice < 40) {
+                status = "obez";
+            } else {
+                status = "bolnav";
+            }
+
+            return `La greutatea de ${weight} kg si inaltimea de ${height} m esti ${status}`;
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <div>
+            <h4>Hello world!</h4>
+            <input type="number" id="numar" />
+            <button onclick="clickMe();">Click me!</button>
+            <div id="result"></div>
+        </div>
+
+        <div>
+            <h4>Max of 2 values</h4>
+            <span>
+                <input type="text" id="maxOfX" placeholder="x" />
+                <input type="text" id="maxOfY" placeholder="y" />
+                <button onclick="maxOfClick();">Compute</button>
+            </span>
+            <div id="resultMaxOf"></div>
+        </div>
+
+        <div>
+            <h4>Indicele de greutate</h4>
+            <span>
+                <input type="text" id="weight" placeholder="Greutate" />
+                <input type="text" id="height" placeholder="Inaltime" />
+                <button onclick="checkHealth();">Compute</button>
+            </span>
+            <div id="resultCheckHealth"></div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input[type="text"]{
+            margin: 2px;
+        }
+    </style>
+
+    <script>
+        function createControl() {
+            let mainElemenet = document.querySelector("#inputs");
+            mainElemenet.insertAdjacentHTML("beforeend", `<div><input type="text" /></div>`);         
+        }
+
+        function calculate(){
+            let inputs = document.querySelectorAll("#inputs input")
+            let result = 0;
+
+            for(let input of inputs){
+                let numberValue = Number(input.value);
+                if(!isNaN(numberValue)){
+                    result += numberValue;
+                }
+            }
+
+            let div = document.querySelector("#result");
+            div.innerHTML = `The sum is equal to ${result}.`;
+        }
+
+    </script>
+</head>
+
+<body>
+    <main>
+        <div id="inputs">
+            <div>
+                <input type="text" />
+                <button onclick="createControl();">Add text input...</button>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <button onclick="calculate();">Calculate sum.</button>
+            <div id="result">
+
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

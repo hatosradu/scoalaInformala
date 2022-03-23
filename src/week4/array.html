@@ -121,21 +121,21 @@
         console.log(`The character [c] is found ${manyOf(text, "c")} times.`);
 
 
-        function matrix(){
-            let result =  "";
-            for(let i = 0; i< 16;i++){
-                if(i % 2 ===0){
-                    result+="0 "
-                }else{
-                    result+="1 "
+        function matrix() {
+            let result = "";
+            for (let i = 0; i < 16; i++) {
+                if (i % 2 === 0) {
+                    result += "0 "
+                } else {
+                    result += "1 "
                 }
 
-                if(i % 4 === 3){
+                if (i % 4 === 3) {
                     result += "\n";
                 }
 
             }
-return result;
+            return result;
         }
 
         console.log(matrix());

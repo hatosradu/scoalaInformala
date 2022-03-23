@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+    <style>
+        #pages > .page:not(.active){
+            display: none;
+        }
+
+        nav > button.active{
+            background-color: yellow;
+        }
+
+    </style>
+    <script>
+        function changeView(index){
+            let activePage = document.querySelector("#pages > .page.active")
+            activePage?.classList.remove("active");
+            let pages = document.querySelectorAll("#pages > .page");
+          
+            pages[index].classList.add("active");
+
+            let buttons = document.querySelectorAll("nav > button");
+            for (let button of buttons){
+                button.classList.remove("active");
+
+            }
+            buttons[index].classList.add("active");
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <button onclick="changeView(0);">Tab 1</button>
+        <button onclick="changeView(1);">Tab 2</button>
+        <button onclick="changeView(2);">Tab 3</button>
+        <button onclick="changeView(3);">Tab 4</button>
+    </nav>
+    <div id="pages">
+        <section class="page">Page 1</section>
+        <section class="page">Page 2</section>
+        <section class="page">Page 3</section>
+        <section class="page">Page 4</section>
+
+    </div>
+</body>
+</html>
