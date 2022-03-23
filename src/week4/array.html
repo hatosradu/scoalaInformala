@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function boltGame() {
+            let direction = true; //true spre dreapta; false stanga
+            for (let i = 0; i <= 100; i++) {
+                if (i % 7 === 0 || containsSeven(i)) {
+                    direction = !direction;
+                    console.log("BOLT");
+                } else if (direction) {
+                    console.log(`${i}  ->`);
+                } else {
+                    console.log(`${i}  <-`);
+                }
+            }
+
+        }
+
+        function containsSeven(value) {
+            for (let i = value; i > 0; i = Math.floor(i / 10)) {
+                if (i % 7 === 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        console.log("Bolt game");
+        console.log(boltGame());
+
+        let str = "Ana are mere";
+        let newStr = "";
+
+        function revertString(text) {
+            let newStr = "";
+            for (let ch = text.length - 1; ch >= 0; ch--) {
+                newStr += text[ch];
+            }
+            console.log(newStr);
+            return newStr;
+        }
+
+        console.log(revertString(str));
+
+
+        console.log("1. display in the console the numbers from 1 to x");
+        function printNumbers(length) {
+            for (let index = 0; index < length; index++) {
+                console.log(index);
+            }
+
+            return "Numbers have been printed to console.";
+        }
+
+        console.log(printNumbers(20));
+
+        console.log("2. display in the console the odd numbers from 1 to x");
+        function printOddNumbers(length) {
+            for (let index = 0; index < length; index++) {
+                if (index % 2 === 0) {
+                    console.log(index);
+                }
+            }
+
+            return "Numbers have been printed to console.";
+        }
+
+        console.log(printOddNumbers(20));
+
+        console.log("3. compute the sum of the elements of an array and display it in the console");
+        function sum(array) {
+            let result = 0;
+            for (let index = 0; index < array.length; index++) {
+                result += array[index];
+            }
+
+            return result;
+        }
+
+        let array = [123, 1, 2, 3, 12, 3, 124, 124, 1231, 231, 23, 12, 31];
+        console.log(`The array is ${array}`);
+        console.log(`The sum of the array is equal to: ${sum(array)}`);
+
+        console.log("4. compute the maximum of the elements of an array and display it in the console");
+        function maxOf(array) {
+            let maxValue = array[0];
+            for (let index = 0; index < array.length; index++) {
+                if (maxValue < array[index]) {
+                    maxValue = array[index];
+                }
+            }
+
+            return maxValue;
+        }
+
+        console.log(`The array is ${array}`);
+        console.log(`The max value of the array is: ${maxOf(array)}`);
+
+
+        let text = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum laudantium totam provident corporis, doloremque, maiores perspiciatis adipisci perferendis dignissimos, rerum magni praesentium dolorum laboriosam. Recusandae voluptatum quisquam est iure in.";
+        console.log("5. compute how many times a certain element appears in an array")
+        function manyOf(array, char) {
+            let count = 0;
+            for (let ch of array) {
+                if (ch === char) {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        console.log(`The array is: ${text}`);
+        console.log(`The character [c] is found ${manyOf(text, "c")} times.`);
+
+
+        function matrix(){
+            let result =  "";
+            for(let i = 0; i< 16;i++){
+                if(i % 2 ===0){
+                    result+="0 "
+                }else{
+                    result+="1 "
+                }
+
+                if(i % 4 === 3){
+                    result += "\n";
+                }
+
+            }
+return result;
+        }
+
+        console.log(matrix());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

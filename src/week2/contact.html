@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <style>
+        body {
+            margin: 0px;
+            height: 100vh;
+        }
+
+        main {
+            height: 100%;
+        }
+
+        header {
+            height: 10%;
+            padding-left: 20%;
+            padding-top: 25px;
+            background: lightgray;
+        }
+
+        .title {
+            font-size: 42px;
+        }
+
+        .subtitle {
+            margin-left: 5px;
+            font-size: 26px;
+            color: gray;
+        }
+
+        main {
+            width: 50%;
+            margin: 30px auto;
+            background-color: gainsboro;
+            border-radius: 10px;
+            padding: 5px;
+            height: auto;
+        }
+
+        .card {
+            display: flex;
+        }
+
+        .column {
+            flex-grow: 1;
+            height: 100%;
+        }
+
+        input {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            width: 90%;
+            padding: 5px;
+        }
+
+        textarea {
+            width: 95%;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            min-height: 113px;
+        }
+
+        .helperText {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <span class="title">Contact us</span>
+        <span class="subtitle">Feel free to contact us</span>
+    </header>
+    <main>
+        <div class="card">
+            <div class="column">
+                <div class="helperText">Name</div>
+                <input type="text" placeholder="Enter name"></input>
+
+                <div class="helperText">Email</div>
+                <input type="text" placeholder="Enter email"></input>
+
+                <div class="helperText">Subject</div>
+                <input type="text" placeholder="Enter subject"></input>
+
+            </div>
+            <div class="column">
+                <div class="helperText">Message</div>
+                <textarea cols="auto" rows="auto"></textarea>
+        <button >Send Message</button>
+
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>

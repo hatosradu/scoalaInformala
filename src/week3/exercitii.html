@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function convertCelsiusToFahrenheit(celsius) {
+            return celsius * 9 / 5 + 32;
+        }
+
+        console.log(convertCelsiusToFahrenheit(0));
+        console.log(convertCelsiusToFahrenheit(20));
+        console.log(convertCelsiusToFahrenheit(100));
+
+        function maxOf(a, b) {
+            if (a > b) {
+                return a;
+            }
+            else {
+                return b;
+            }
+        }
+
+        function maxOf1(a, b) {
+            return a > b ? a : b;
+        }
+
+        console.log(maxOf(20, 33));
+        console.log(maxOf1(20, 33));
+        //g / h^2 - indicele de greutate
+        // la greutatea de kg {} 
+        //
+        /*
+        <20 subponderal
+        <25 normal
+        <30 suprapondeRAL
+        <40 obez
+        >40 esti obes
+        
+        La greutatea de <<20>> de kg si inaltimea de <<1.73>> esti <<>>
+        
+        */
+
+
+        function indiceleDeGreutate(height, weight) {
+            let indice = weight / (height * height);
+            let status = null;
+            if (indice < 20) {
+                status = "subponderal";
+            } else if (indice < 25) {
+                status = "normal";
+            } else if (indice < 30) {
+                status = "supraponderal";
+            } else if (indice < 40) {
+                status = "obez";
+            } else {
+                status = "bolnav";
+            }
+
+            return `La greutatea de ${weight} kg si inaltimea de ${height} m esti ${status}`;
+        }
+
+        console.log(indiceleDeGreutate(1.77, 20));
+        console.log(indiceleDeGreutate(1.77, 120));
+        console.log(indiceleDeGreutate(1.88, 80));
+
+        function convertMPGToKm(miles) {
+            return 235.214583 / miles;
+        }
+
+
+        function log(message) {
+            console.log(message);
+        }
+
+        console.log(convertMPGToKm(45));
+        console.log(convertMPGToKm(220));
+        console.log(convertMPGToKm(10));
+        console.log(convertMPGToKm(30));
+        console.log(convertMPGToKm(50));
+
+        function surface(height, width) {
+            return height * width;
+        }
+
+        log(surface(5, 10));
+
+        function surfaceSquare(side) {
+            return surface(side, side);
+        }
+
+        log(surface(5, 5));
+
+        function medieCuTeza(a, b, c, d, e) {
+            return (a + b + c + d + e) / 5;
+        }
+
+        log(medieCuTeza(7, 8, 4, 10, 10));
+
+        function tripleSum(a, b) {
+            if (a === b) {
+                return (a + b) * 3;
+            }
+            return a + b;
+        }
+
+        function is50(a, b) {
+            if (a === 50 || b === 50 || a + b === 50) {
+                return true;
+            }
+            return false;
+        }
+
+        log(is50(25, 25));
+        log(is50(50, 335));
+        log(is50(15, 50));
+        log(is50(1522, 250));
+
+        function sign(a, b) {
+            if ((a < 0 && b >= 0) || (b < 0 && a >= 0)) {
+                return true;
+            }
+            return false;
+        }
+
+        log(sign(20, -3));
+
+
+        function module3(a) {
+            if (a % 3 === 0) {
+                return true;
+            }
+            return false;
+        }
+
+        function module7(a) {
+            if (a % 7 === 0) {
+                return true;
+            }
+            return false;
+        }
+
+        function checkModulo(a) {
+            if (module3(a) || module7(a)) {
+                return true;
+            }
+            return false;
+        }
+
+        log(checkModulo(4));
+
+        function time(ms) {
+            let totalMiliseconds = ms
+            let miliseconds = ms % 1000;
+
+            totalMiliseconds = ms - miliseconds;
+            let totalSeconds = totalMiliseconds / 1000;
+            let seconds = totalSeconds % 60;
+
+            totalSeconds = totalSeconds - seconds;
+
+            let totalMinutes = totalSeconds / 60;
+            let minutes = totalMinutes % 60;
+            totalMinutes = totalMinutes - minutes;
+
+            let hours = totalMinutes / 60;
+
+            return `Time is: ${hours}:${minutes}:${seconds}:${miliseconds}`
+        }
+
+        log("Write a JavaScript program to convert a given number to hours and minutes.");
+        log(time(5182300));
+
+
+        function isEight(a, b) {
+            if (a === 8
+                || b === 8
+                || a - b === 8
+                || b - a === 8
+                || a + b === 8) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        log("");
+        log("Write a JavaScript program to check from two given integers whether one of them is 8 or their sum or difference is 8.");
+        log(isEight(2, 4));
+        log(isEight(4, 4));
+        log(isEight(8, 4));
+        log(isEight(4, 8));
+        log(isEight(12, 4));
+
+        log("");
+        log("Write a JavaScript program to check whether the last digit of the three given positive integers is same.");
+        function lastDigit(a, b, c) {
+            
+        }
+        log(lastDigit(31, 42, 51));
+
+        log("");
+
+        log("Write a JavaScript program to find a value which is nearest to 100 from two different given integer values.")
+        function closeTo100(a, b) {
+            let diffA = a / 100;
+            let diffB = b / 100;
+
+            if (diffA < 1) {
+                if (diffA > diffB) {
+                    return `Numarul ${a} este mai aproape de 100`;
+                }
+                return `Numarul ${b} este mai aproape de 100`;
+            }
+            else {
+                if (diffA < diffB) {
+                    return `Numarul ${a} este mai aproape de 100`;
+                }
+                return `Numarul ${b} este mai aproape de 100`;
+            }
+        }
+
+        log(closeTo100(918, 8338));
+
+        log(closeTo100(198, 188));
+
+        log("");
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
