@@ -6,69 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact us</title>
-    <style>
-        body {
-            margin: 0px;
-            height: 100vh;
-        }
-
-        main {
-            height: 100%;
-        }
-
-        header {
-            height: 10%;
-            padding-left: 20%;
-            padding-top: 25px;
-            background: lightgray;
-        }
-
-        .title {
-            font-size: 42px;
-        }
-
-        .subtitle {
-            margin-left: 5px;
-            font-size: 26px;
-            color: gray;
-        }
-
-        main {
-            width: 50%;
-            margin: 30px auto;
-            background-color: gainsboro;
-            border-radius: 10px;
-            padding: 5px;
-            height: auto;
-        }
-
-        .card {
-            display: flex;
-        }
-
-        .column {
-            flex-grow: 1;
-            height: 100%;
-        }
-
-        input {
-            border: 1px solid lightgray;
-            border-radius: 5px;
-            width: 90%;
-            padding: 5px;
-        }
-
-        textarea {
-            width: 95%;
-            border: 1px solid lightgray;
-            border-radius: 5px;
-            min-height: 113px;
-        }
-
-        .helperText {
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="contact.css">
+   
 </head>
 
 <body>
@@ -92,12 +31,20 @@
             <div class="column">
                 <div class="helperText">Message</div>
                 <textarea cols="auto" rows="auto"></textarea>
-        <button >Send Message</button>
-
+                <button>Send Message</button>
             </div>
         </div>
-
     </main>
+    <footer>
+        <span style="font-size: large;">
+            Or find us on social media
+        </span>
+        <hr>
+        <div class="socialMedia">
+            <span>Facebook</span>
+            <span>Twitter</span>
+            <span>Instagram</span>
+        </div>
+    </footer>
 </body>
-
 </html>
