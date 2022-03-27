@@ -1,0 +1,105 @@
+body {
+    margin: 0px;
+    padding: 0px 10px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav>button {
+    flex: 1;
+    border: none;
+    margin: 0px 5px;
+    font-size: 18px;
+    padding: 20px 20px;
+    background-color: #2265a9;
+    color: white;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+}
+
+#pageTitle {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.vl {
+    border-left: 1px solid black;
+    height: 50px;
+    margin: -5px 10px 0px 10px;
+}
+
+#header>.subtitle {
+    margin: auto 0px;
+    font-size: 18px;
+}
+
+#image {
+    position: relative;
+}
+
+#image>img {
+    max-width: 100%;
+}
+
+#image>span {
+    background-color: #2265a9;
+    color: white;
+    position: absolute;
+    padding: 10px;
+}
+
+.dottedLine {
+    border: none;
+    border-top: 3px dotted white;
+    height: 1px;
+}
+
+.containerFlex {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.containerItem {
+    flex: 1px;
+    background-color: #e8e8e8;
+    margin: 10px;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.doubleBorder {
+    background-color: #3a3b3f;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px #3a3b3f;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.linkText {
+    color: #063381;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #a3a3a3;
+    margin-bottom: 10px;
+    padding-right: 60px;
+}
+
+footer {
+    background: #2265a9;
+    padding: 15px 10px;
+    color: white;
+}
