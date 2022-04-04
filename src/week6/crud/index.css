@@ -1,0 +1,29 @@
+body {
+    margin: 0px;
+    height: 100vh;
+}
+
+main {
+    height: 100%;
+    display: flex;
+}
+
+.leftPanel{
+    flex: 0.4;
+}
+
+.rightPanel{
+    flex: 0.59;
+}
+
+form {
+    background: 1px solid salmon;
+}
+
+form>div {
+    margin: 10px;
+}
+
+.addedTag {
+    background-color: lightgray;
+}

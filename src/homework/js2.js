@@ -168,6 +168,7 @@ function sort(array) {
             result.push(number);
         }
     }
+    
     return result;
 }
 
@@ -190,7 +191,6 @@ function sortAscDesc(arr) {
     negativeNumber = negativeNumber.sort(function (a, b) { return b - a });
 
     return positiveNumbers.concat(negativeNumber);
-
 }
 
 

@@ -71,13 +71,13 @@ function sumaPrime(n) {
     let result = 0;
     let primeNumbers = [];
     let index = 2;
-    
-    while(primeNumbers.length < n){
+
+    while (primeNumbers.length < n) {
         if (prim(index)) {
             primeNumbers.push(index);
         }
 
-        index+=1;
+        index += 1;
     }
 
     for (let i = 0; i < primeNumbers.length; i++) {
@@ -132,7 +132,7 @@ O functie "maxArray" care primeste un array si returneaza valoarea maxima (ar tr
 function maxArray(array) {
     let result = array[0];
     for (let item of array) {
-        if(item > result){
+        if (item > result) {
             result = item;
         }
     }
@@ -143,17 +143,17 @@ function maxArray(array) {
 /*
 O functie "sumMinMax" care primeste un array de numere si returneaza suma dintre valoare maxima si valoare minima
 */
-function sumMinMax(array){
+function sumMinMax(array) {
     let minValue = array[0];
     for (let item of array) {
-        if(item < minValue){
+        if (item < minValue) {
             minValue = item;
         }
     }
 
     let maxValue = array[0];
     for (let item of array) {
-        if(item > maxValue){
+        if (item > maxValue) {
             maxValue = item;
         }
     }
@@ -164,12 +164,12 @@ function sumMinMax(array){
 /*
 O functie "hasDuplicates" care primeste un array si returneaza daca exista duplicate intr-un array primit ca parametru (true/false)
 */
-function hasDuplicates(array){
+function hasDuplicates(array) {
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array.length; j++) {
-            if(i !== j){
-                if(array[i] === array[j]){
-                    return  true;
+            if (i !== j) {
+                if (array[i] === array[j]) {
+                    return true;
                 }
             }
         }
@@ -181,10 +181,10 @@ function hasDuplicates(array){
 /*
 O functie "produsPozitive" care primeste un array si returneaza produsul numerelor pozitive intr-un array primit ca parametru
 */
-function produsPozitive(array){
+function produsPozitive(array) {
     let result = 1;
-    for(let item of array){
-        if(item > 0){
+    for (let item of array) {
+        if (item > 0) {
             result *= item;
         }
     }
@@ -196,9 +196,9 @@ function produsPozitive(array){
 /*
 O functie "palindrom" care primeste un string si returneaza daca este palindrom (inversul == originalul, ex: "1234321", "55", "787") (true/false)
 */
-function palindrom(text){
+function palindrom(text) {
     let mirrorString = "";
-    for(let item of text){
+    for (let item of text) {
         mirrorString = item + mirrorString;
     }
 
