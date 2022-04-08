@@ -1,0 +1,146 @@
+:root {
+    --primaryBackgroundColor: #129995;
+    --secondaryBackgroundColor: #3AAFAB;
+    --textColor: white;
+}
+
+body {
+    background: var(--primaryBackgroundColor);
+    font: normal 12px "Fira Sans", "Helvetica Neue", sans-serif;
+    height: 100vh;
+}
+
+header {
+    text-align: center;
+    color: var(--textColor);
+}
+
+form {
+    background-color: var(--secondaryBackgroundColor);
+    width: 80%;
+    min-width: 250px;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 1px 2px 3px 4px rgba(12, 12, 12, 0.2);
+    padding: 10px;
+}
+
+label {
+    color: var(--textColor);
+}
+
+.flex-outer {
+    list-style-type: none;
+    padding: 0;
+
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flex-outer li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.flex-outer>li:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.flex-outer li label {
+    padding: 8px;
+    font-weight: 100;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+}
+
+.flex-outer>li>label {
+    flex: 1 0 120px;
+    max-width: 220px;
+}
+
+.flex-outer>li>label+* {
+    flex: 1 0 220px;
+}
+
+.flex-outer li input {
+    padding: 10px;
+    border: none;
+}
+
+.flex-outer li button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
+}
+
+table {
+    width: 80%;
+    min-width: 250px;
+    max-width: 900px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px 2px rgba(0, 0, 1, 0.1);
+    border-collapse: collapse;
+}
+
+th {
+    color: #333;
+    background: #3AAFAB;
+    border-bottom: 5px solid #333;
+    font-size: 16px;
+    padding: 12px 0px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th:first-child {
+    border-radius: 10px 0px 0px 0px;
+    padding-left: 20px;
+}
+
+
+th:last-child {
+    border-radius: 0px 10px 0px 0px;
+}
+
+
+td {
+    background: #333;
+    padding: 5px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 14px;
+    color: white;
+    border-bottom: 1px solid #3AAFAB;
+}
+
+td:first-child {
+    padding-left: 20px;
+}
+
+td>button {
+    background: transparent;
+    padding: 0px;
+    border: none;
+}
+
+td>button:hover {
+    background-color: rgb(119, 117, 117);
+    border-radius: 5px;
+    transform: translateY(-2px);
+
+}
+
+td>button:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(1px);
+}

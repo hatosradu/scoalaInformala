@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+</head>
+
+<body onload="onBodyLoad();">
+    <header>
+        <h1>Phone Book</h1>
+    </header>
+
+    <main>
+        <form>
+            <ul class="flex-outer">
+                <li>
+                    <label>First Name</label>
+                    <input type="text" name="firstName" placeholder="First name">
+                </li>
+                <li>
+                    <label>Last Name</label>
+                    <input type="text" name="lastName" placeholder="Last name">
+                </li>
+                <li>
+                    <label>Phone number</label>
+                    <input type="text" name="phone" placeholder="Phone number" />
+                </li>
+
+                <li>
+                    <button type="submit" onclick="onAdd(event);">Add</button>
+                </li>
+            </ul>
+        </form>
+
+        <table id="contacts">
+            <thead>
+                <tr>
+                    <th style="width: auto;">Name</th>
+                    <th style="width: 35%;">Phone number</th>
+                    <th style="width: 30px;"></th>
+                    <th style="width: 30px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Radu Tudor Hatos</td>
+                    <td>0766 196 082</td>
+                    <td style="text-align: center;">
+                        <img src="./assets/edit.png">
+                    </td>
+                    <td>
+                        <img src="./assets/delete.png">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Radu Tudor Hatos</td>
+                    <td>0766 196 082</td>
+                    <td style="text-align: center;">
+                        <img src="./assets/edit.png">
+                    </td>
+                    <td>
+                        <img src="./assets/delete.png">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Radu Tudor Hatos</td>
+                    <td>0766 196 082</td>
+                    <td style="text-align: center;">
+                        <img src="./assets/edit.png">
+                    </td>
+                    <td>
+                        <img src="./assets/delete.png">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Radu Tudor Hatos</td>
+                    <td>0766 196 082</td>
+                    <td style="text-align: center;">
+                        <button onclick="console.log('Edit');">
+                            <img src="./assets/edit.png">
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="console.log('Delete');">
+                            <img src="./assets/delete.png">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>

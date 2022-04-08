@@ -1,158 +1,168 @@
 let state = {
-    list: [
-        {
-            id: 0,
-            title: "GOOGLE",
-            url: "https://www.google.com",
-            difficulty: "2",
-            tags: ["JS", "HTML"]
-        }
-    ],
-
-    difficulty: {
-        "": "Not selected",
-        "0": "Entry Level",
-        "1": "Easy",
-        "2": "Medium",
-        "3": "Hard",
-        "4": "Hacker"
-    }
-}
-
-
-function adauga() {
-    event.preventDefault();
-
-    let id = Number(document.querySelector("[name='id']").value);
-    let title = document.querySelector("[name='title']").value.trim();
-    let url = document.querySelector("[name='url']").value.trim();
-    let difficulty = document.querySelector("[name='difficulty']").value.trim();
-    let tagsElements = document.querySelectorAll(".addedTag");
-    let tags = [];
-    for (let tag of tagsElements) {
-        if (tag.value !== "") {
-            tags.push(tag.value.trim());
-        }
-    }
-
-    let listItem = createObject(title, url, difficulty, tags);
-
-    let type = document.querySelector("[type='submit']").value;
-    if (type === "Adauga") {
-        state.list.push(listItem);
-    }
-    else {
-        for(let elem of state.list){
-            if(id === elem.id){
-                elem.title = title;
-                elem.url = url;
-                elem.difficulty = difficulty;
-                elem.tags = tags;
-            }
-        }
-
-        document.querySelector("[type='submit']").value = "Adauga";
-
-    }
-
-    document.querySelector("form").reset();
-
-    
-
-
-    draw();
-}
-
-
-function addTag(button, event) {
-    //click on button triggered the submit event
-    event.preventDefault();
-    let tag = document.querySelector("[name='tag']").value.trim();
-
-    button.insertAdjacentHTML("afterend", addTagElement(tag));
-
-    document.querySelector("[name='tag']").value = "";
-    document.querySelector("[name='tag']").focus();
-}
-
-function addTagElement(tag) {
-    return `
-            <div>
-                <input type="text" placeholder="Tag" class="addedTag" value="${tag}" readonly/> 
-                <button onclick="removeTag(this)">-</button> 
-            </div>
-        `;
-}
+  list: [
+    {
+      title: "Google",
+      url: "https://google.com",
+      difficulty: "2",
+      tags: ["JS", "HTML"],
+    },
+    {
+      title: "Google2",
+      url: "https://google.com",
+      difficulty: "2",
+      tags: ["JS", "HTML"],
+    },
+    {
+      title: "Google3",
+      url: "https://google.com",
+      difficulty: "2",
+      tags: ["JS", "HTML"],
+    },
+    {
+      title: "Google4",
+      url: "https://google.com",
+      difficulty: "2",
+      tags: ["JS", "HTML"],
+    },
+  ],
+  idxEdit: null,
+  difficulty: {
+    "": "",
+    0: "Entry Level",
+    1: "Easy",
+    2: "Medium",
+    3: "Hard",
+    4: "Hacker",
+  },
+};
 
 function draw() {
-    let table = document.querySelector("#listTable tbody")
-    let bodyOfTable = "";
+  let table = document.querySelector("#list tbody");
+  let str = "";
+  for (let i = 0; i < state.list.length; i++) {
+    let elem = state.list[i];
+    str += `
+            <tr>
+                <td><a href="${elem.url}" target="_blank">${elem.title}</a></td>
+                <td>${state.difficulty[elem.difficulty]}</td>
+                <td>${elem.tags.join(", ")}</td>
+                <td>
+                    <button onclick="del(${i})">Delete</button>
+                    <button onclick="edit(${i})">Edit</button>
+                </td>
+            </tr>
+        `;
+  }
+  table.innerHTML = str;
+  showTable();
+}
 
-    for (let item of state.list) {
-        bodyOfTable += createTableRow(item);
+function edit(idx) {
+  showForm();
+
+  let elem = state.list[idx];
+  document.querySelector("[name='title']").value = elem.title;
+  document.querySelector("[name='url']").value = elem.url;
+  document.querySelector("[name='difficulty']").value = elem.difficulty;
+
+  let tagsInputs = document.querySelectorAll("[name='tags']");
+  for (let i = tagsInputs.length; i < elem.tags.length; i++) {
+    addTag();
+  }
+  tagsInputs = document.querySelectorAll("[name='tags']");
+  for (let i = 0; i < elem.tags.length; i++) {
+    tagsInputs[i].value = elem.tags[i];
+  }
+  state.idxEdit = idx;
+}
+
+function del(idx) {
+  if (
+    confirm(`Esti sigur ca vrei sa stergi linkul: ${state.list[idx].title}?`)
+  ) {
+    state.list.splice(idx, 1);
+    draw();
+  }
+}
+function adauga(event) {
+  event.preventDefault();
+  let title = document.querySelector("[name='title']").value.trim();
+  let url = document.querySelector("[name='url']").value.trim();
+  let difficulty = document.querySelector("[name='difficulty']").value.trim();
+  let tagInputs = document.querySelectorAll("[name='tags']");
+  let tags = [];
+  for (let input of tagInputs) {
+    if (input.value.trim() !== "") {
+      tags.push(input.value.trim());
     }
-
-    table.innerHTML = bodyOfTable;
-}
-
-function createTableRow(item) {
-    return ` 
-        <tr>
-            <td><a href="${item.url}" target="_blank">${item.title}</th>
-            <td style="width: 20%;">${state.difficulty[item.difficulty]}</th>
-            <td>${item.tags.join(", ")}</th>
-            <td><button onclick="removeRow(this, ${item.id});">-</button></td>
-            <td><button onclick="edit(${item.id});">edit</button></td>
-        </tr>
-    `;
-}
-
-function removeTag(button) {
-    button.parentNode.remove();
-
-}
-
-function createObject(title, url, difficulty, tags) {
-    return {
-        id: Math.random(),
-        title: title,
-        url: url,
-        difficulty: difficulty,
-        tags: tags
+  }
+  if (state.idxEdit === null) {
+    //vreau sa adaug un element nou in lista
+    state.list.push({
+      title: title,
+      url: url,
+      difficulty: difficulty,
+      tags: tags,
+    });
+  } else {
+    //aici sunt in timpul editarii
+    state.list[state.idxEdit] = {
+      title: title,
+      url: url,
+      difficulty: difficulty,
+      tags: tags,
     };
+    state.idxEdit = null;
+  }
+  document.querySelector("form").reset();
+  draw();
+}
+function addTag() {
+  let button = document.querySelector("#addTagBtn");
+  button.parentElement.insertAdjacentHTML(
+    "beforeend",
+    `<br/><input type="text" placeholder="Tag" name="tags" />`
+  );
 }
 
-function removeRow(element, id) {
-    if (confirm(`Are you sure you want to remove the link?`)) {
-        for (var i = 0; i < state.list.length; i++) {
-            if (state.list[i].id === id) {
-                state.list.splice(i, 1);
-            }
-        }
-
-        draw();
-    }
+function showTable() {
+  document.querySelector("#list").classList.remove("hidden");
+  document.querySelector("#form").classList.add("hidden");
 }
 
-function edit(id) {
-    let elem = null;
+function showForm() {
+  document.querySelector("#list").classList.add("hidden");
+  document.querySelector("#form").classList.remove("hidden");
+}
 
-    for (let item of state.list) {
-        if (item.id === id) {
-            elem = item;
-            break;
-        }
-    }
-    
-    document.querySelector("[name='id']").value = elem.id;
-    document.querySelector("[name='title']").value = elem.title;
-    document.querySelector("[name='url']").value = elem.url;
-    document.querySelector("[name='difficulty']").value = elem.difficulty;
+function resetForm() {
+  document.querySelector("#form").reset();
+  //delete the extra tag inputs
+  let tagInputs = document.querySelectorAll("[name='tags']");
+  for (let i = 1; i < tagInputs.length; i++) {
+    tagInputs[i].remove();
+  }
+  //and all the BRs
+  let brs = tagInputs[0].parentElement.querySelectorAll("br");
+  for (let br of brs) {
+    br.remove();
+  }
 
-    let button = document.querySelector("#addTagBtn");
-    for (let tag of elem.tags) {
-        button.insertAdjacentHTML("afterend", addTagElement(tag));
-    }
+  state.idxEdit = null;
+  showForm();
+}
 
-    document.querySelector("[type='submit']").value = "Edit";
+function sortTable(column) {
+  state.list.sort();
+}
+
+function compare(a, b) {
+  if (a < b) {
+    return -1;
+  }else if(a === b){
+    return 0;
+  } else{
+    return 1;
+  }
+
 }
