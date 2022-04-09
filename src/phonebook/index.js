@@ -3,69 +3,70 @@ let state = {
         {
             "firstName": "Jane",
             "lastName": "Mathis",
-            "phoneNumber": "(861) 503-3670"
+            "phoneNumber": "8615033670"
         },
         {
             "firstName": "Ivy",
             "lastName": "Sweeney",
-            "phoneNumber": "(879) 553-2344"
+            "phoneNumber": "8795532344"
         },
         {
             "firstName": "Noelle",
             "lastName": "Lang",
-            "phoneNumber": "(877) 465-2680"
+            "phoneNumber": "8774652680"
         },
         {
             "firstName": "Kennedy",
             "lastName": "Stokes",
-            "phoneNumber": "(857) 539-2279"
+            "phoneNumber": "8575392279"
         },
         {
             "firstName": "Liliana",
             "lastName": "Love",
-            "phoneNumber": "(881) 438-2643"
+            "phoneNumber": "8814382643"
         },
         {
             "firstName": "Rene",
             "lastName": "Ellis",
-            "phoneNumber": "(948) 430-2541"
+            "phoneNumber": "9484302541"
         },
         {
             "firstName": "Lopez",
             "lastName": "Carlson",
-            "phoneNumber": "(957) 536-3111"
+            "phoneNumber": "9575363111"
         },
         {
             "firstName": "Penelope",
             "lastName": "Hess",
-            "phoneNumber": "(821) 454-2343"
+            "phoneNumber": "8214542343"
         },
         {
             "firstName": "Patsy",
             "lastName": "Maxwell",
-            "phoneNumber": "(968) 550-2345"
+            "phoneNumber": "9685502345"
         },
         {
             "firstName": "Melisa",
             "lastName": "Frederick",
-            "phoneNumber": "(924) 457-2117"
+            "phoneNumber": "9244572117"
         },
         {
             "firstName": "Cote",
             "lastName": "Griffith",
-            "phoneNumber": "(823) 592-2236"
+            "phoneNumber": "8235922236"
         },
         {
             "firstName": "Dawson",
             "lastName": "Barlow",
-            "phoneNumber": "(858) 502-2273"
+            "phoneNumber": "8585022273"
         },
         {
             "firstName": "Eva",
             "lastName": "Terry",
-            "phoneNumber": "(869) 580-3189"
+            "phoneNumber": "8695803189"
         }
-    ]
+    ],
+    isEditMode: false
 }
 
 
@@ -83,6 +84,17 @@ function loadContacts() {
     }
 
     contacts.querySelector("tbody").innerHTML = tableContent;
+
+
+}
+
+function formState() {
+    let btn = document.querySelector("[type='submit']");
+    if (state.isEditMode) {
+        btn.innerText = "Edit";
+    } else {
+        btn.innerText = "Add";
+    }
 }
 
 function addContactRow(contact, index) {
@@ -105,27 +117,132 @@ function addContactRow(contact, index) {
 }
 
 function onAdd(event) {
+    let invalidInput = false;
     event.preventDefault();
-    let firstName = document.querySelector("[name='firstName']").value;
-    let lastName = document.querySelector("[name='lastName']").value;
-    let phone = document.querySelector("[name='phone']").value;
 
-    console.log(`Adding: ${firstName} ${lastName} ${phone}`);
+    let firtNameValidationText = document.querySelector("#firtNameValidationText");
+    let lastNameValidationText = document.querySelector("#lastNameValidationText");
+    let phoneValidationText = document.querySelector("#phoneValidationText");
 
-    state.contacts.push({
-        firstName: firstName,
-        lastName: lastName,
-        phoneNumber: phone
-    });
+    let firstNameElem = document.querySelector("[name='firstName']");
+    let lastNameElem = document.querySelector("[name='lastName']");
+    let phoneElem = document.querySelector("[name='phone']");
+
+
+    let firstName = firstNameElem.value;
+    let lastName = lastNameElem.value;
+    let phone = phoneElem.value;
+
+    //validate inputs
+    if (isStringNullOrWhiteSpace(firstName)) {
+        firstNameElem.classList.add("invalidInput");
+        firtNameValidationText.innerText = "Please type a valid first name.";
+        invalidInput = true;
+    } else {
+        firstNameElem.classList.remove("invalidInput");
+        firtNameValidationText.innerText = "";
+    }
+
+    if (isStringNullOrWhiteSpace(lastName)) {
+        lastNameElem.classList.add("invalidInput");
+        lastNameValidationText.innerText = "Please type a valid last name.";
+        invalidInput = true;
+    } else {
+        lastNameElem.classList.remove("invalidInput");
+        lastNameValidationText.innerText = "";
+    }
+
+    if (isStringNullOrWhiteSpace(phone) || !validatePhoneNumber(phone)) {
+        phoneElem.classList.add("invalidInput");
+        phoneValidationText.innerText = "Phone number must be valid.";
+        invalidInput = true;
+    } else {
+        phoneElem.classList.remove("invalidInput");
+        phoneValidationText.innerText = "";
+    }
+
+    if (invalidInput) {
+        return;
+    }
+
+
+    if (state.isEditMode) {
+        state.isEditMode = false;
+    } else {
+        console.log(`Adding: ${firstName} ${lastName} ${phone}`);
+
+        state.contacts.push({
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phone
+        });
+    }
 
     loadContacts();
+    formState();
+    document.querySelector("form").reset();
 }
 
+function isStringNullOrWhiteSpace(str) {
+    if (str === null || str === undefined) {
+        return true;
+    }
+
+    if (str === "") {
+        return true;
+    }
+
+    if (str.trim().length === 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function validatePhoneNumber(str) {
+    if (str.length !== 10) {
+        return false;
+    }
+
+    let number = Number(str);
+    if (isNaN(number)) {
+        return false;
+    }
+
+    return true;
+}
+
+function onKeyPress(event) {
+    if (event.keyCode === 13) {
+        onAdd(event);
+    }
+}
 
 function editContact(index) {
     console.log(`Edit contact: ${index}`);
+
+    let contanct = state.contacts[index];
+    document.querySelector("[name='firstName']").value = contanct.firstName;
+    document.querySelector("[name='lastName']").value = contanct.lastName;
+    document.querySelector("[name='phone']").value = contanct.phoneNumber;
+
+    let inputs = document.querySelectorAll(".invalidInput");
+    for (let item of inputs) {
+        item.classList.remove("invalidInput");
+    }
+
+    document.querySelector("#firtNameValidationText").innerText = "";
+    document.querySelector("#lastNameValidationText").innerText = "";
+    document.querySelector("#phoneValidationText").innerText = "";
+
+    state.isEditMode = true;
+    formState();
 }
 
 function deleteContact(index) {
-    console.log(`Delete contact: ${index}`);
+    let contanct = state.contacts[index];
+    if (confirm(`Are you sure you want to remove ${contanct.firstName} ${contanct.lastName} from contacts list?`)) {
+        state.contacts.splice(index, 1);
+        loadContacts();
+    }
 }

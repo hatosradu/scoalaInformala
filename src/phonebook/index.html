@@ -22,14 +22,17 @@
                     <label>First Name</label>
                     <input type="text" name="firstName" placeholder="First name">
                 </li>
+                <div id="firtNameValidationText"></div>
                 <li>
                     <label>Last Name</label>
                     <input type="text" name="lastName" placeholder="Last name">
                 </li>
+                <div id="lastNameValidationText"></div>
                 <li>
                     <label>Phone number</label>
-                    <input type="text" name="phone" placeholder="Phone number" />
+                    <input type="text" name="phone" placeholder="Phone number" onkeypress="onKeyPress(event);"/>
                 </li>
+                <div id="phoneValidationText"></div>
 
                 <li>
                     <button type="submit" onclick="onAdd(event);">Add</button>
