@@ -66,9 +66,9 @@ let state = {
             "phoneNumber": "8695803189"
         }
     ],
-    isEditMode: false
+    isEditMode: false,
+    editIndex: null
 }
-
 
 function onBodyLoad() {
     loadContacts();
@@ -84,24 +84,13 @@ function loadContacts() {
     }
 
     contacts.querySelector("tbody").innerHTML = tableContent;
-
-
-}
-
-function formState() {
-    let btn = document.querySelector("[type='submit']");
-    if (state.isEditMode) {
-        btn.innerText = "Edit";
-    } else {
-        btn.innerText = "Add";
-    }
 }
 
 function addContactRow(contact, index) {
     return `
         <tr>
             <td>${contact.firstName} ${contact.lastName}</td>
-            <td>${contact.phoneNumber}</td>
+            <td>${contact.phoneNumber.splice(4, 0, " ").splice(8, 0, " ")}</td>
             <td style="text-align: center;">
                 <button onclick="editContact(${index});">
                     <img src="./assets/edit.png">
@@ -116,9 +105,19 @@ function addContactRow(contact, index) {
     `;
 }
 
+function formState() {
+    let btn = document.querySelector("[type='submit']");
+    if (state.isEditMode) {
+        btn.innerText = "Edit";
+    } else {
+        btn.innerText = "Add";
+    }
+}
+
 function onAdd(event) {
-    let invalidInput = false;
     event.preventDefault();
+
+    let invalidInput = false;
 
     let firtNameValidationText = document.querySelector("#firtNameValidationText");
     let lastNameValidationText = document.querySelector("#lastNameValidationText");
@@ -165,12 +164,16 @@ function onAdd(event) {
         return;
     }
 
-
     if (state.isEditMode) {
-        state.isEditMode = false;
-    } else {
-        console.log(`Adding: ${firstName} ${lastName} ${phone}`);
+        state.contacts[state.editIndex] = {
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phone
+        };
 
+        state.isEditMode = false;
+        state.editIndex = null;
+    } else {
         state.contacts.push({
             firstName: firstName,
             lastName: lastName,
@@ -181,22 +184,6 @@ function onAdd(event) {
     loadContacts();
     formState();
     document.querySelector("form").reset();
-}
-
-function isStringNullOrWhiteSpace(str) {
-    if (str === null || str === undefined) {
-        return true;
-    }
-
-    if (str === "") {
-        return true;
-    }
-
-    if (str.trim().length === 0) {
-        return true;
-    }
-
-    return false;
 }
 
 function validatePhoneNumber(str) {
@@ -236,13 +223,40 @@ function editContact(index) {
     document.querySelector("#phoneValidationText").innerText = "";
 
     state.isEditMode = true;
+    state.editIndex = index;
     formState();
 }
 
 function deleteContact(index) {
     let contanct = state.contacts[index];
     if (confirm(`Are you sure you want to remove ${contanct.firstName} ${contanct.lastName} from contacts list?`)) {
+        if (state.isEditMode && state.editIndex === index) {
+            state.isEditMode = false;
+            formState();
+        }
+
         state.contacts.splice(index, 1);
         loadContacts();
+
     }
 }
+
+function isStringNullOrWhiteSpace(str) {
+    if (str === null || str === undefined) {
+        return true;
+    }
+
+    if (str === "") {
+        return true;
+    }
+
+    if (str.trim().length === 0) {
+        return true;
+    }
+
+    return false;
+}
+
+String.prototype.splice = function(idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+};
