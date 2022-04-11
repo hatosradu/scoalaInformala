@@ -122,7 +122,6 @@ function onKeyPress(event) {
 
 function onAdd(event) {
     event.preventDefault();
-
     let invalidInput = false;
 
     let firtNameValidationText = document.querySelector("#firtNameValidationText");
@@ -133,10 +132,9 @@ function onAdd(event) {
     let lastNameElem = document.querySelector("[name='lastName']");
     let phoneElem = document.querySelector("[name='phone']");
 
-
-    let firstName = firstNameElem.value;
-    let lastName = lastNameElem.value;
-    let phone = phoneElem.value;
+    let firstName = firstNameElem.value.trim();
+    let lastName = lastNameElem.value.trim();
+    let phone = phoneElem.value.trim();
 
     //validate inputs
     if (isStringNullOrWhiteSpace(firstName)) {
@@ -206,8 +204,6 @@ function validatePhoneNumber(str) {
 }
 
 function editContact(index) {
-    console.log(`Edit contact: ${index}`);
-
     let contanct = state.contacts[index];
     document.querySelector("[name='firstName']").value = contanct.firstName;
     document.querySelector("[name='lastName']").value = contanct.lastName;
@@ -237,7 +233,6 @@ function deleteContact(index) {
 
         state.contacts.splice(index, 1);
         loadContacts();
-
     }
 }
 
