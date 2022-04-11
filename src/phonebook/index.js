@@ -114,6 +114,12 @@ function formState() {
     }
 }
 
+function onKeyPress(event) {
+    if (event.keyCode === 13) {
+        onAdd(event);
+    }
+}
+
 function onAdd(event) {
     event.preventDefault();
 
@@ -197,12 +203,6 @@ function validatePhoneNumber(str) {
     }
 
     return true;
-}
-
-function onKeyPress(event) {
-    if (event.keyCode === 13) {
-        onAdd(event);
-    }
 }
 
 function editContact(index) {
