@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,35 @@
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
 </head>
-<body>
-    
+
+<body onload="onBodyLoad();">
+    <main>
+        <h3>Shopping list</h3>
+
+        <div class="container">
+            <form>
+                <input type="text" name="inputItem" onkeypress="onKeyPress(event);">
+                <button onclick="addItem(event);">Add item</button>
+            </form>
+
+            <div>
+                <button onclick="sort('asc');">Sort asc</button>
+                <button onclick="sort('desc');">Sort desc</button>
+
+                <table id="shopListTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 65%;text-align: left;">Item Description</th>
+                            <th style="width: 35%;text-align: left;">Auction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

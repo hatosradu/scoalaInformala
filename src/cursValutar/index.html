@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curs valutar</title>
+
+    <style>
+        header,
+        main {
+            width: 80%;
+            margin: auto;
+        }
+
+        form {
+            background-color: white;
+            width: 30%;
+            min-width: 250px;
+            border-radius: 5px;
+            box-shadow: 1px 2px 3px 4px rgba(12, 12, 12, 0.2);
+            padding: 10px;
+        }
+
+        .grid-layout {
+            display: grid;
+            display: inline-grid;
+            gap: 30px 10px;
+            grid-template-columns: 1fr 1fr;
+        }
+    </style>
+
+
+    <script>
+        let state = {};
+        async function onBodyLoad() {
+            let url = "http://data.fixer.io/api/latest?access_key=4e7ce12e949edd62aa095e83fbe32d96";
+            let response = await fetch(url);
+            state = await response.json();
+
+            if (state !== undefined || state !== null) {
+                loadContent();
+            }
+        }
+
+        function loadContent() {
+            let selectFrom = document.querySelector("[name='currencyFrom']")
+            setSelectContent(selectFrom);
+
+            let selectTo = document.querySelector("[name='currencyTo']")
+            setSelectContent(selectTo);
+        }
+
+        async function setSelectContent(element) {
+            for (let [key, value] of Object.entries(state.rates)) {
+                var option = document.createElement("option");
+                option.value = value;
+                option.innerHTML = key; // whatever property it has
+
+                // then append it to the select element
+                element.appendChild(option);
+            }
+        }
+
+        function convert(event) {
+            event.preventDefault();
+            let quantityFrom = document.querySelector("[name='quantityFrom']").value;
+            let currencyFrom = document.querySelector("[name='currencyFrom']").value;
+            let currencyTo = document.querySelector("[name='currencyTo']").value;
+
+            let quantity = Number(quantityFrom);
+            if (isNaN(quantity)) {
+                alert("Invalid Quantity!");
+                return;
+            }
+
+            let conversionFactor = state.rates[state.base];
+            if (currencyTo !== state.base) {
+                conversionFactor *= state.base[currencyTo];
+            }
+
+            let result = quantityFrom * conversionFactor;
+
+
+        }
+    </script>
+</head>
+
+<body onload="onBodyLoad();">
+    <header>
+        <h2>Curs valutar</h2>
+    </header>
+
+    <main>
+        <form onsubmit="event.preventDefault();">
+            <div class="grid-layout">
+                <input name="quantityFrom" type="text">
+                <select name="currencyFrom" type="text"></select>
+                <input name="quantityTo" type="text">
+                <select name="currencyTo" type="text"></select>
+
+                <span>3Euro</span>
+                <button onclick="convert(event);">Convert</button>
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

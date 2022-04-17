@@ -1,3 +1,34 @@
-body{
+body {
+    margin: 0;
     background: #d8cbb3;
+}
+
+main {
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 1px 2px 3px 4px rgba(12, 12, 12, 0.2);
+    padding: 10px;
+    background: white;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+table {
+    min-width: 350px;
+}
+
+.itemActionButton {
+    background: lightcoral;
+    border: none;
+    border-radius: 5px;
+}
+
+.itemActionButton:hover {
+    background: lightcoral;
+    border: 1px solid green;
 }
