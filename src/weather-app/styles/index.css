@@ -1,0 +1,215 @@
+body {
+    margin: 0;
+    background: var(--clr-background-800);
+    font-family: 'Trebuchet MS', sans-serif;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    min-width: 380px;
+}
+
+header {
+    height: 50px;
+    background: var(--clr-background-100);
+    margin: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    font-size: 24px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 80%;
+    margin: auto;
+    margin-top: 25px;
+}
+
+main>form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+}
+
+
+input[type="button"] {
+    outline: none;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    background: var(--clr-background-100);
+    border: none;
+    color: var(--clr-background-900);
+    letter-spacing: 1px;
+    text-shadow: 0;
+    padding: 0px 10px;
+}
+
+input[type="text"] {
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    height: 40px;
+    font-size: 1.3rem;
+}
+
+.autocomplete {
+    width: 60%;
+}
+
+
+footer {
+    height: 100px;
+    background: var(--clr-background-100);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#weater-component {
+    margin: 10px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 1px 2px 3px 4px rgba(12, 12, 12, 0.2);
+    background: var(--clr-background-100);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-header {
+    background: var(--clr-background-500);
+    border-radius: 5px 5px 0px 0px;
+    padding: 5px;
+    color: var(--clr-background-100);
+    font-weight: 600;
+}
+
+
+#today-weather {
+    height: 200px;
+    padding: 10px;
+}
+
+.weather-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.weather-container>#weather-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#city {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#forecast-weather {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #262936;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 0px;
+    margin: 0;
+}
+
+#forecast-weather>div:nth-of-type(even) {
+    background-color: #323544;
+}
+
+.forecast-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    flex:1;
+}
+
+.forecast-container-header {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #222530;
+    text-align: center;
+    font-weight: 900;
+    font-size: 22px;
+}
+
+#forecast-table{
+    width: 100%;
+}
+
+#forecast-weather > div:nth-of-type(even) > .forecast-container-header{
+    background: #2d303d;
+}
+
+#forecast-table > div{
+    width: 100%;
+}
+
+#forecast-table > div:nth-of-type(even) {
+    background-color: #2d303d;
+}
+
+#forecast-weather > div:nth-of-type(even) > #forecast-table > div:nth-of-type(even){
+    background: #262936;
+}
+
+#forecast-table > div > div:first-child{
+    padding-top: 5px;
+}
+
+#forecast-table > div > div:last-child{
+    padding-bottom: 5px;
+}
+/* As the hover reacts different on mobile devices
+use pointer type to define the device type: 
+Fine: The primary input mechanism includes an accurate pointing device.*/
+@media(hover: hover) and (pointer: fine) {
+
+    input[type="button"]:hover {
+        color: var(--clr-background-100);
+        background: var(--clr-background-500);
+    }
+
+}
+
+@media (max-width: 480px) {
+    main>form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main>form>input[type="text"],
+    .autocomplete {
+        width: 100%;
+        box-sizing: content-box;
+    }
+
+    main>form>input[type="button"] {
+        width: calc(100% - 20px);
+        box-sizing: content-box;
+    }
+
+}

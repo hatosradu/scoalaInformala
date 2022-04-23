@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit item</title>
+    <link rel="stylesheet" href="../css/colors.css">
+    <style>
+        header {
+            height: 50px;
+            width: 100%;
+            background-color: var(--clr-background-100);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-left: 10px;
+            color: white;
+            font-size: 28px;
+        }
+
+        main {
+            margin: 20px;
+            width: 100%;
+        }
+
+        form {
+            background-color: var(--clr-background-600);
+            width: 80%;
+            min-width: 450px;
+            max-width: 80%;
+            border-radius: 5px;
+            box-shadow: 1px 2px 3px 4px rgba(12, 12, 12, 0.2);
+            padding: 10px;
+        }
+
+        label {
+            color: var(--clr-background-999);
+        }
+
+        .flex-outer {
+            list-style-type: none;
+            padding: 0;
+
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .flex-outer li {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+
+        .flex-outer li label {
+            padding: 8px;
+            font-weight: 100;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .flex-outer>li>label {
+            flex: 1 0 120px;
+            max-width: 220px;
+        }
+
+        .flex-outer>li>label+* {
+            flex: 1 0 220px;
+        }
+
+        .flex-outer li input,
+        .flex-outer li textarea,
+        .flex-outer li #image {
+            padding: 10px;
+            border: none;
+        }
+
+        .flex-outer li #image {
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .flex-outer li textarea {
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .flex-outer li button {
+            margin-left: auto;
+            padding: 8px 16px;
+            border: none;
+            background: #333;
+            color: #f2f2f2;
+            text-transform: uppercase;
+            letter-spacing: .09em;
+            border-radius: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    
+    </style>
+
+    <script>
+        let state = {
+            isEditMode: false,
+            itemId: null
+        }
+
+        async function onBodyLoad() {
+            let searchQuery = window.location.search;
+            console.log(searchQuery);
+            let itemId = searchQuery.substring(4);
+
+            if (!itemId) {
+                return;
+            }
+
+            state.isEditMode = true;
+            state.itemId = itemId;
+            let url = `https://manu-playgrou-default-rtdb.europe-west1.firebasedatabase.app/${itemId}/.json`;
+            let response = await fetch(url);
+            let item = await response.json();
+
+            document.querySelector("#title").innerText = "Admin - Edit: " + item.nume;
+
+
+            let ingredients = item.ingrediente.split(",");
+
+
+            document.querySelector("[name='name']").value = item.nume;
+            document.querySelector("[name='url']").value = item.imagine;
+            document.querySelector("[name='ingredients']").value = item.ingrediente;
+            document.querySelector("[name='howToPrepare']").value = item.howToPrepare ?? "";
+            document.querySelector("#image").src = item.imagine;
+        }
+
+
+        async function onAdd(event) {
+            event.preventDefault();
+
+            let item = {
+                "imagine": document.querySelector("[name='url']").value,
+                "ingrediente": document.querySelector("[name='ingredients']").value,
+                "nume": document.querySelector("[name='name']").value,
+                "howToPrepare": document.querySelector("[name='howToPrepare']").value
+            }
+
+
+            if (state.isEditMode) {
+                let requestUrl =`https://manu-playgrou-default-rtdb.europe-west1.firebasedatabase.app/${state.itemId}/.json`
+                let response = await fetch(requestUrl, {
+                    method: "PUT",
+                    body: JSON.stringify(item)
+                });
+            } else{
+                let requestUrl =`https://manu-playgrou-default-rtdb.europe-west1.firebasedatabase.app/.json`
+                let response = await fetch(requestUrl, {
+                    method: "POST",
+                    body: JSON.stringify(item)
+                });
+            }
+
+            window.location = "./admin.html"
+
+        }
+
+        function onImageInput(elem){
+            document.querySelector("#image").src = elem.value;
+
+        }
+    </script>
+</head>
+
+<body onload="onBodyLoad();">
+    <header>
+        <h4 id="title"></h4>
+    </header>
+    <main>
+
+        <form>
+
+            <ul class="flex-outer">
+                <li>
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Name">
+                </li>
+                <li>
+                    <label>Url Imagine</label>
+                    <input type="url" name="url" placeholder="Url Imagine" onfocusout="onImageInput(this);">
+                </li>
+                <li>
+                    <label></label>
+                    <img id="image">
+                </li>
+                <li>
+                    <label>Ingredients</label>
+                    <textarea name="ingredients" placeholder="Ingredients"></textarea>
+                </li>
+                <li>
+                    <label>How to prepare:</label>
+                    <textarea name="howToPrepare" placeholder="How to prepare"></textarea>
+                </li>
+                <li>
+                    <button type="submit" onclick="onAdd(event);">Save</button>
+                </li>
+            </ul>
+            </div>
+
+        </form>
+</body>
+
+</html>

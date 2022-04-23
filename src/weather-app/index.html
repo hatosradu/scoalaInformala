@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./styles/globals.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/autocomplete.css">
+
+    <script src="./src/autocomplete.js"></script>
+    <script src="index.js"></script>
+
+</head>
+
+<body onload="onBodyLoad();">
+    <header>
+        <span>Weather</span>
+    </header>
+
+    <main>
+        <form autocomplete="off" onsubmit="event.preventDefault();">
+            <div class="autocomplete">
+                <input id="myInput" type="text" name="myCountry" placeholder="Search..."
+                    onkeypress="onInputKeyPress(event);">
+            </div>
+            <input type="button" value="Search" onclick="onSearch();">
+            <input type="button" value="Forecast" onclick="onForecast();">
+        </form>
+
+        <div id="weater-component">
+            <div class="weather-header">
+            </div>
+
+            <div id="today-weather">
+                <div>
+                    <span id="city"></span>
+                </div>
+                <div class="weather-container">
+                    <div class="weather-container">
+                        <span >
+                            <div id="weather-celsius" style="font-size: 72px;"></div>
+                            <div style="text-align: center;">
+                                <span id="min-weather" style="margin-right: 10px;"></span>
+                                <span id="max-weather"></span>
+                            </div>
+                        </span>
+                        
+                    </div>
+                    <div id="weather-status">
+                        <img src="http://openweathermap.org/img/w/03d.png" alt="">
+                        <div id="status" style="margin-left: 10px;"></div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div id="forecast-weather">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <span>Hatos Tudor-Radu @ 2022</span>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm!</title>
+    <link rel="stylesheet" href="../css/colors.css">
+    <style>
+        div {
+            margin: auto;
+            background-color: var(--clr-background-600);
+            margin: 10%;
+            width: 80%;
+            border-radius: 5px;
+            box-shadow: 1px 2px 3px 4px rgba(12, 12, 12, 0.2);
+            padding: 10px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p{
+            font-size: large;
+            color: white;
+        }
+    </style>
+
+    <script>
+        function onBodyLoad() {
+            let searchQuery = new URLSearchParams(window.location.search);
+           
+            let id = searchQuery.get("id");
+            let name = searchQuery.get("name");
+
+
+        }
+    </script>
+</head>
+
+<body onload="onBodyLoad()">
+    <div>
+        <p>Are you sure you want to remove </p>
+        <span>
+            <button></button>
+            <button></button>
+        </span>
+    </div>
+</body>
+
+</html>

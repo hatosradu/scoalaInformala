@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant menu</title>
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./css/colors.css">
+    <link rel="stylesheet" href="./css/loadingElem.css">
+    <link rel="stylesheet" href="./css/items.css">
+
+    <style>
+        nav {
+            height: 50px;
+            width: 100%;
+            background-color: var(--clr-background-100);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+            padding-left: 10px;
+        }
+
+        main {
+            padding: 25px;
+        }
+
+        nav>button {
+            background: transparent;
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+
+
+        .menu-item:hover {
+            background: var(--clr-background-900);
+            transform: translateY(-5px);
+
+        }
+
+        .menu-item:active {
+            box-shadow: 0 2px #666;
+            transform: translateY(5px);
+        }
+
+        .menu-item:hover>p {
+            overflow-y: visible;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body onload="onBodyLoad();">
+    <nav>
+        <button>Menu</button>
+        <button onclick="toAdmin();" style="color: var(--clr-background-100);">Admin</button>
+    </nav>
+    <div class="lds-roller hidden">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <main id="mainContent">
+        <form onsubmit="event.preventDefault();">
+            <input type="text" name="searchInput" placeholder="Search..." oninput="filterMenu(this, event);">
+            <button>Search</button>
+        </form>
+        <div id="itemsPanel" class="container"></div>
+    </main>
+</body>
+
+</html>

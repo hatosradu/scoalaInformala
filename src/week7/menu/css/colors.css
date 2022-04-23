@@ -1,0 +1,16 @@
+:root {
+    --clr-background-100: #002836;
+    --clr-background-600: #006E92;
+    --clr-background-900: #009dd1;
+    --clr-background-999: #fff;
+
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
