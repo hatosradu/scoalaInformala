@@ -1,25 +1,6 @@
 let state = {
     items: [
-        {
-            description: "Lapte",
-            isBought: true
-        },
-        {
-            description: "Oua",
-            isBought: false
-        },
-        {
-            description: "Dulciuri",
-            isBought: false
-        },
-        {
-            description: "Branza",
-            isBought: false
-        },
-        {
-            description: "Hartie",
-            isBought: false
-        },
+       
     ]
 }
 
@@ -78,14 +59,14 @@ function onKeyPress(event) {
 function sort(direction) {
     if (direction === "asc") {
         state.items = state.items.sort((a, b) => {
-            if (a.description > b.description) return 1;
-            if (a.description < b.description) return -1;
+            if (a.description.toLocaleLowerCase() > b.description.toLocaleLowerCase()) return 1;
+            if (a.description.toLocaleLowerCase() < b.description.toLocaleLowerCase()) return -1;
             return 0;
         });
     } else {
         state.items = state.items.sort((a, b) => {
-            if (a.description > b.description) return -1;
-            if (a.description < b.description) return 1;
+            if (a.description.toLocaleLowerCase() > b.description.toLocaleLowerCase()) return -1;
+            if (a.description.toLocaleLowerCase() < b.description.toLocaleLowerCase()) return 1;
             return 0;
         });
     }
