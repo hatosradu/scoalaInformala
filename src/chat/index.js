@@ -32,13 +32,16 @@ async function addMessage() {
 }
 
 function displayMessage(data) {
+    let date = new Date(data.date);
+    let hour =  date.toLocaleString('en-US', { hour: 'numeric', hour12: false });
+    let minute =  date.toLocaleString('en-US', { minute: 'numeric' });
 
     let template =
         `
     <div class="chatBubble ${data.userName === userName ? "self" : ""}">
         <div class="userName">${data.userName}</div>
         <div class="chatMessage">${data.message}</div>
-        <div class="time">${data.date}</div>
+        <div class="time">${hour}:${minute}</div>
     </div>
     `;
 
