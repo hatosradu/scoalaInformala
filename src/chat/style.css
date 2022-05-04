@@ -1,0 +1,94 @@
+:root {
+    --shadow-rbg: 11, 20, 26;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.error{
+    border-color: red;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#chatContainer {
+    max-width: 1200px;
+    margin: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat {
+    flex: 1;
+    background-color: #f3efe9;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#controls {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+#controls > form{
+    display: flex;
+    flex-direction:row ;
+    width: 100%;
+}
+
+#chatMessage {
+    flex: 1;
+}
+
+img {
+    height: 40px;
+    width: 40px;
+}
+
+.chatBubble {
+    border: 1px solid ghostwhite;
+    border-radius: 10px;
+    padding: 3px;
+    margin-top: 10px;
+    width: fit-content;
+    max-width: 90%;
+    align-self: flex-start;
+    background-color: white;
+    box-shadow: 0 1px 0.5px rgba(var(--shadow-rbg), .13);
+}
+
+.chatBubble > .userName {
+    font-size: 0.9rem;
+    color: #53bdeb;
+}
+
+.chatBubble.chatBubble.self + .chatBubble.self{
+    margin-top: 0px;
+}
+
+.chatMessage {
+    font-size: 0.8rem;
+    padding-inline: 5px;
+}
+
+.time {
+    font-size: 0.6rem;
+    float: right;
+    font-style: italic;
+}
+
+.chatBubble.self {
+    align-self: flex-end;
+    background-color: #d1f4cc;
+}
+
+.chatBubble.self > .userName{
+    display: none;
+}

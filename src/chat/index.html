@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-app.js";
+        import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/9.7.0/firebase-database.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBQfV9JeaUOj1LkWQs5N97rTQBHvhXQ90I",
+            authDomain: "chat-si-79de3.firebaseapp.com",
+            databaseURL: "https://chat-si-79de3-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "chat-si-79de3",
+            storageBucket: "chat-si-79de3.appspot.com",
+            messagingSenderId: "362599631435",
+            appId: "1:362599631435:web:5c75e5a854537deb5b1bce"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        const messagesRef = ref(database, 'messages');
+        onChildAdded(messagesRef, (snapshot) => {
+            const data = snapshot.val();
+            displayMessage(data);
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <main>
+        <div id="signUpForm">
+            <form onsubmit="event.preventDefault();startChat();">
+                <label>Name:
+                    <input type="text" placeholder="John Doe" name="name" value="Radu" />
+                </label>
+
+                <input type="submit" value="Start Chat">
+            </form>
+        </div>
+
+        <div id="chatContainer" class="hidden">
+            <div id="chat">
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique ratione
+                        ex quis laborum! Fugiat voluptate nobis quaerat maxime unde dolorum eligendi aut incidunt ullam
+                        iure? Commodi natus eius accusamus provident.</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique ratione
+                        ex quis laborum! Fugiat voluptate nobis quaerat maxime unde dolorum eligendi aut incidunt ullam
+                        iure? Commodi natus eius accusamus provident.</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique ratione
+                        ex quis laborum! Fugiat voluptate nobis quaerat maxime unde dolorum eligendi aut incidunt ullam
+                        iure? Commodi natus eius accusamus provident.</div>
+                    <div class="time">19:34</div>
+                </div>
+
+                <div class="chatBubble">
+                    <div class="userName">John Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+
+                <div class="chatBubble">
+                    <div class="userName">John Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+
+                <div class="chatBubble">
+                    <div class="userName">John Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+
+                <div class="chatBubble">
+                    <div class="userName">John Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+
+                <div class="chatBubble">
+                    <div class="userName">John Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+
+                <div class="chatBubble">
+                    <div class="userName">John Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+
+                <div class="chatBubble">
+                    <div class="userName">John Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+                <div class="chatBubble self">
+                    <div class="userName">Radu Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+
+                <div class="chatBubble">
+                    <div class="userName">John Doe</div>
+                    <div class="chatMessage">Cursul de html si javascript</div>
+                    <div class="time">19:34</div>
+                </div>
+
+            </div>
+
+            <div id="controls">
+                <form onsubmit="event.preventDefault();addMessage();">
+                    <textarea id="chatMessage" name="chatMessage"></textarea>
+                    <button>
+                        <img src="./images/send.svg" />
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>

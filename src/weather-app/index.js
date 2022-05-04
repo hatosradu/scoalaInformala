@@ -62,7 +62,6 @@ async function onForecast() {
             let jsonResponse = await response.json();
             await loadForecastWeather(jsonResponse);
         }
-
     }
 }
 
@@ -70,11 +69,11 @@ async function loadCurrentWeather(weather) {
     var dateTimeNow = new Date();
     document.querySelector("#city").innerText = weather.name;
     document.querySelector("#status").innerText = `${weather.weather[0].main} (${weather.weather[0].description})`;
-
     document.querySelector(".weather-header").innerText = dateTimeNow.toUTCString();
     document.querySelector("#weather-celsius").innerHTML = weather.main.temp + "&deg;C";
     document.querySelector("#min-weather").innerHTML = "Min: " + weather.main.temp_min + "&deg;C";
     document.querySelector("#max-weather").innerHTML = "Max: " + weather.main.temp_max + "&deg;C";
+    document.querySelector("#actual-weather-icon").src = `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
 }
 
 async function loadForecastWeather(forecast) {
@@ -90,9 +89,6 @@ async function loadForecastWeather(forecast) {
         return groups;
     }, {});
 
-
-
-
     for (let [key, value] of Object.entries(dateForecasts)) {
         let dayForecastItems = "";
 
@@ -100,30 +96,26 @@ async function loadForecastWeather(forecast) {
             let hour = item.dt_txt.split(' ')[1].substring(0, 5);
 
             dayForecastItems +=
-                `
-            <div style="text-align: center;">
-                <div>${hour}</div>
-                <img src="http://openweathermap.org/img/w/${item.weather[0].icon}.png" alt="">
-                <div>${item.weather[0].main}</div>
-                <div id="weather-celsius" style="font-size: 36px;">${item.main.temp}&deg;C</div>
-            </div>
             `
+                <div style="text-align: center;">
+                    <div>${hour}</div>
+                    <img src="http://openweathermap.org/img/w/${item.weather[0].icon}.png" alt="">
+                    <div>${item.weather[0].main}</div>
+                    <div id="weather-celsius" style="font-size: 36px;">${item.main.temp}&deg;C</div>
+                </div>
+            `;
         }
 
-
-        forecastTable += ` 
-        <div class="forecast-container">
-            <div class="forecast-container-header">${key}</div>
-            <div id="forecast-table" class="forecast-container">
-              ${dayForecastItems}
+        forecastTable += 
+        ` 
+            <div class="forecast-container">
+                <div class="forecast-container-header">${key}</div>
+                <div id="forecast-table" class="forecast-container">
+                ${dayForecastItems}
+                </div>
             </div>
-        </div>
-            `;
-        console.log(key);
-        console.log(value);
-
+        `;
     }
 
-    console.log(dateForecasts);
     document.querySelector("#forecast-weather").innerHTML = forecastTable;
 }

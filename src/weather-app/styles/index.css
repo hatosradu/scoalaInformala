@@ -187,12 +187,10 @@ footer {
 use pointer type to define the device type: 
 Fine: The primary input mechanism includes an accurate pointing device.*/
 @media(hover: hover) and (pointer: fine) {
-
     input[type="button"]:hover {
         color: var(--clr-background-100);
         background: var(--clr-background-500);
     }
-
 }
 
 @media (max-width: 480px) {
