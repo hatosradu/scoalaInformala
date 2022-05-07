@@ -11,25 +11,15 @@ let URL_COUNTRIES_WITH_CITIES = "https://countriesnow.space/api/v0.1/countries";
 async function onBodyLoad() {
     state.cities = await getCities();
     autocomplete(document.getElementById("myInput"), state.cities);
-
 }
 
 async function getCities() {
     let result = [];
 
-    try {
-        let response = await fetch(URL_COUNTRIES_WITH_CITIES);
-        let jsonReponse = await response.json();
-        if (!jsonReponse.error) {
-            for (let country of jsonReponse.data) {
-                result = result.concat(country.cities)
-            }
-        }
-        else {
-            console.log("Failed to get cities. Error message: " + jsonReponse.msg);
-        }
-    } catch (error) {
-        console.log("Unexpected error: " + error);
+    let response = await fetch(URL_COUNTRIES_WITH_CITIES);
+    let jsonReponse = await response.json();
+    for (let country of jsonReponse.data) {
+        result = result.concat(country.cities)
     }
 
     return result;
@@ -48,13 +38,16 @@ async function onSearch() {
         if (response.ok) {
             let jsonResponse = await response.json();
             await loadCurrentWeather(jsonResponse);
+            await loadForecast();
         }
-
-        await onForecast();
+        else {
+            alert("Failed to retrieve weather information for location: " + city);
+            document.querySelector("#searchForm").reset();
+        }
     }
 }
 
-async function onForecast() {
+async function loadForecast() {
     let city = document.querySelector("[name='myCountry']").value;
     if (city) {
         let response = await fetch(URL_FORECAST_WEATHER + city);
@@ -66,6 +59,7 @@ async function onForecast() {
 }
 
 async function loadCurrentWeather(weather) {
+    document.querySelector("#weater-component").classList.remove("hidden");
     var dateTimeNow = new Date();
     document.querySelector("#city").innerText = weather.name;
     document.querySelector("#status").innerText = `${weather.weather[0].main} (${weather.weather[0].description})`;
@@ -74,6 +68,8 @@ async function loadCurrentWeather(weather) {
     document.querySelector("#min-weather").innerHTML = "Min: " + weather.main.temp_min + "&deg;C";
     document.querySelector("#max-weather").innerHTML = "Max: " + weather.main.temp_max + "&deg;C";
     document.querySelector("#actual-weather-icon").src = `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+    document.querySelector("#humidity").innerText = weather.main.humidity;
+    document.querySelector("#pressure").innerText = weather.main.pressure;
 }
 
 async function loadForecastWeather(forecast) {
@@ -106,8 +102,8 @@ async function loadForecastWeather(forecast) {
             `;
         }
 
-        forecastTable += 
-        ` 
+        forecastTable +=
+            ` 
             <div class="forecast-container">
                 <div class="forecast-container-header">${key}</div>
                 <div id="forecast-table" class="forecast-container">

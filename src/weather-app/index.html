@@ -13,7 +13,6 @@
 
     <script src="./src/autocomplete.js"></script>
     <script src="index.js"></script>
-
 </head>
 
 <body onload="onBodyLoad();">
@@ -22,19 +21,16 @@
     </header>
 
     <main>
-        <form autocomplete="off" onsubmit="event.preventDefault();">
+        <form id="searchForm" autocomplete="off" onsubmit="event.preventDefault();">
             <div class="autocomplete">
                 <input id="myInput" type="text" name="myCountry" placeholder="Search..."
                     onkeypress="onInputKeyPress(event);">
             </div>
             <input type="button" value="Search" onclick="onSearch();">
-            <input type="button" value="Forecast" onclick="onForecast();">
         </form>
 
-        <div id="weater-component">
-            <div class="weather-header">
-            </div>
-
+        <div id="weater-component" class="hidden">
+            <div class="weather-header"></div>
             <div id="today-weather">
                 <div>
                     <span id="city"></span>
@@ -47,17 +43,17 @@
                                 <span id="min-weather" style="margin-right: 10px;"></span>
                                 <span id="max-weather"></span>
                             </div>
-                        </span>
-                        
+                        </span>                        
                     </div>
                     <div id="weather-status">
-                        <img id="actual-weather-icon" src="http://openweathermap.org/img/w/03d.png" alt="">
+                        <img id="actual-weather-icon" alt="">
                         <div id="status" style="margin-left: 10px;"></div>
-
                     </div>
                 </div>
-
-
+                <div class="weather-container" style="gap: 10%; margin-top: 20px;">
+                    <div>Humidity: <span id="humidity"></span> </div>
+                    <div>Pressure: <span id="pressure"></span> </div>
+                </div>
             </div>
             <div id="forecast-weather">
             </div>

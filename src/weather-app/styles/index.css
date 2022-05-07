@@ -4,15 +4,19 @@ body {
     font-family: 'Trebuchet MS', sans-serif;
     min-height: 100vh;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     min-width: 380px;
+}
+
+.hidden {
+    display: none !important;
 }
 
 header {
     height: 50px;
     background: var(--clr-background-100);
     margin: 0;
-    color: white;
+    color: var(--clr-background-900);
     display: flex;
     align-items: center;
     padding-left: 5%;
@@ -27,6 +31,7 @@ main {
     width: 80%;
     margin: auto;
     margin-top: 25px;
+    min-height: calc(100vh - 50px - 100px - 25px);
 }
 
 main>form {
@@ -70,7 +75,7 @@ input[type="text"] {
 footer {
     height: 100px;
     background: var(--clr-background-100);
-    color: white;
+    color: var(--clr-background-900);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,16 +87,16 @@ footer {
     border-radius: 5px;
     box-shadow: 1px 2px 3px 4px rgba(12, 12, 12, 0.2);
     background: var(--clr-background-100);
-    color: white;
+    color: var(--clr-background-900);
     display: flex;
     flex-direction: column;
 }
 
 .weather-header {
-    background: var(--clr-background-500);
+    background: #222530;
     border-radius: 5px 5px 0px 0px;
     padding: 5px;
-    color: var(--clr-background-100);
+    color: var(--clr-background-900);
     font-weight: 600;
 }
 
@@ -143,7 +148,7 @@ footer {
     flex-direction: column;
     justify-content: start;
     align-items: flex-start;
-    flex:1;
+    flex: 1;
 }
 
 .forecast-container-header {
@@ -156,33 +161,34 @@ footer {
     font-size: 22px;
 }
 
-#forecast-table{
+#forecast-table {
     width: 100%;
 }
 
-#forecast-weather > div:nth-of-type(even) > .forecast-container-header{
+#forecast-weather>div:nth-of-type(even)>.forecast-container-header {
     background: #2d303d;
 }
 
-#forecast-table > div{
+#forecast-table>div {
     width: 100%;
 }
 
-#forecast-table > div:nth-of-type(even) {
+#forecast-table>div:nth-of-type(even) {
     background-color: #2d303d;
 }
 
-#forecast-weather > div:nth-of-type(even) > #forecast-table > div:nth-of-type(even){
+#forecast-weather>div:nth-of-type(even)>#forecast-table>div:nth-of-type(even) {
     background: #262936;
 }
 
-#forecast-table > div > div:first-child{
+#forecast-table>div>div:first-child {
     padding-top: 5px;
 }
 
-#forecast-table > div > div:last-child{
+#forecast-table>div>div:last-child {
     padding-bottom: 5px;
 }
+
 /* As the hover reacts different on mobile devices
 use pointer type to define the device type: 
 Fine: The primary input mechanism includes an accurate pointing device.*/
@@ -209,5 +215,4 @@ Fine: The primary input mechanism includes an accurate pointing device.*/
         width: calc(100% - 20px);
         box-sizing: content-box;
     }
-
 }
